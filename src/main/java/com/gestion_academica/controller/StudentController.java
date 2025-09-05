@@ -1,5 +1,6 @@
 package com.gestion_academica.controller;
 
+import com.gestion_academica.dtos.StudentDTO;
 import com.gestion_academica.entities.Student;
 import com.gestion_academica.service.StudentService;
 import org.springframework.http.ResponseEntity;
@@ -14,23 +15,26 @@ public class StudentController {
 
     private final StudentService studentService;
 
-    // Inyección por constructor
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
-
-    // GET /api/students
+    // GET /api/students?name=algo
     @GetMapping
-    public List<Student> getAll() {
-        return studentService.findAll();
+    public List<StudentDTO> getAll(@RequestParam(required = false) String name) {
+        return studentService.findAllDTO(name);
     }
 
     // GET /api/students/{id}
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getById(@PathVariable Long id) {
-        return studentService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<StudentDTO> getById(@PathVariable Long id) {
+        try {
+            StudentDTO dto = studentService.obtenerStudentPorId(id);
+            return ResponseEntity.ok(dto);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    // Inyección por constructor
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     // POST /api/students

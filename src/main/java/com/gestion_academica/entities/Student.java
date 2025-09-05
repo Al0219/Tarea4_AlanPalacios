@@ -16,80 +16,80 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
     @SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
-    private Long student_id;
+    private Long studentId;
 
     @Column(name = "student_name", nullable = false)
-    private String student_name;
+    private String studentName;
 
     @Column(name = "student_email", nullable = false, unique = true)
-    private String student_email;
+    private String studentEmail;
 
     @Column(name = "student_birthday", nullable = false)
-    private LocalDateTime student_birthday;
+    private LocalDateTime studentBirthday;
 
     @Column(name = "student_address", nullable = false)
-    private String student_address;
+    private String studentAddress;
 
     @Column(name = "student_state", nullable = false)
-    private boolean student_state;
+    private boolean studentState;
 
     public Student() {
     }
 
-    public Student(Long student_id, String student_name, String student_email, LocalDateTime student_birthday, String student_address, boolean student_state) {
-        this.student_id = student_id;
-        this.student_name = student_name;
-        this.student_email = student_email;
-        this.student_birthday = student_birthday;
-        this.student_address = student_address;
-        this.student_state = student_state;
+    public Student(Long studentId, String studentName, String studentEmail, LocalDateTime studentBirthday, String studentAddress, boolean studentState) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.studentEmail = studentEmail;
+        this.studentBirthday = studentBirthday;
+        this.studentAddress = studentAddress;
+        this.studentState = studentState;
     }
 
-    public Long getStudent_id() {
-        return student_id;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public void setStudent_id(Long student_id) {
-        this.student_id = student_id;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
-    public String getStudent_name() {
-        return student_name;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setStudent_name(String student_name) {
-        this.student_name = student_name;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
-    public String getStudent_email() {
-        return student_email;
+    public String getStudentEmail() {
+        return studentEmail;
     }
 
-    public void setStudent_email(String student_email) {
-        this.student_email = student_email;
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
     }
 
-    public LocalDateTime getStudent_birthday() {
-        return student_birthday;
+    public LocalDateTime getStudentBirthday() {
+        return studentBirthday;
     }
 
-    public void setStudent_birthday(LocalDateTime student_birthday) {
-        this.student_birthday = student_birthday;
+    public void setStudentBirthday(LocalDateTime studentBirthday) {
+        this.studentBirthday = studentBirthday;
     }
 
-    public String getStudent_address() {
-        return student_address;
+    public String getStudentAddress() {
+        return studentAddress;
     }
 
-    public void setStudent_address(String student_address) {
-        this.student_address = student_address;
+    public void setStudentAddress(String studentAddress) {
+        this.studentAddress = studentAddress;
     }
 
-    public boolean isStudent_state() {
-        return student_state;
+    public boolean isStudentState() {
+        return studentState;
     }
 
-    public void setStudent_state(boolean student_state) {
-        this.student_state = student_state;
+    public void setStudentState(boolean studentState) {
+        this.studentState = studentState;
     }
 }

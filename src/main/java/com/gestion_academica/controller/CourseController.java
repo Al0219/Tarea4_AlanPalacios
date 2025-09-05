@@ -1,5 +1,6 @@
 package com.gestion_academica.controller;
 
+import com.gestion_academica.dtos.CourseDTO;
 import com.gestion_academica.entities.Course;
 import com.gestion_academica.service.CourseService;
 import org.springframework.http.ResponseEntity;
@@ -14,23 +15,25 @@ public class CourseController {
 
     private final CourseService courseService;
 
-    // Inyección de dependencias por constructor
-    public CourseController(CourseService courseService) {
-        this.courseService = courseService;
-    }
-
-    // GET /api/courses
+    // GET /api/courses?name=algo
     @GetMapping
-    public List<Course> getAll() {
-        return courseService.findAll();
+    public List<CourseDTO> getAll(@RequestParam(required = false) String name) {
+        return courseService.findAllDTO(name);
     }
 
     // GET /api/courses/{id}
     @GetMapping("/{id}")
-    public ResponseEntity<Course> getById(@PathVariable Long id) {
-        return courseService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<CourseDTO> getById(@PathVariable Long id) {
+        try {
+            CourseDTO dto = courseService.obtenerCoursePorId(id);
+            return ResponseEntity.ok(dto);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    // Inyección de dependencias por constructor
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
     }
 
     // POST /api/courses

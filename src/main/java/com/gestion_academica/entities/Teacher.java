@@ -16,88 +16,88 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "teacher_seq")
     @SequenceGenerator(name = "teacher_seq", sequenceName = "teacher_seq", allocationSize = 1)
-    private Long teacher_id;
+    private Long teacherId;
 
     @Column(name = "teacher_name", nullable = false)
-    private String teacher_name;
+    private String teacherName;
     @Column(name = "teacher_email", nullable = false, unique = true)
-    private String teacher_email;
+    private String teacherEmail;
     @Column(name = "teacher_phone", nullable = false, unique = true)
-    private String teacher_phone;   
+    private String teacherPhone;   
     @Column(name = "teacher_birthday", nullable = false)
-    private LocalDateTime teacher_birthday;
+    private LocalDateTime teacherBirthday;
     @Column(name = "teacher_address", nullable = false)
-    private String teacher_address;
+    private String teacherAddress;
     @Column(name = "teacher_state", nullable = false)  
-    private boolean teacher_state;
+    private boolean teacherState;
 
     public Teacher() {
     }
 
-    public Teacher(Long teacher_id, String teacher_name, String teacher_email, String teacher_phone, LocalDateTime teacher_birthday, String teacher_address, boolean teacher_state) {
-        this.teacher_id = teacher_id;
-        this.teacher_name = teacher_name;
-        this.teacher_email = teacher_email;
-        this.teacher_phone = teacher_phone;
-        this.teacher_birthday = teacher_birthday;
-        this.teacher_address = teacher_address;
-        this.teacher_state = teacher_state;
+    public Teacher(Long teacherId, String teacherName, String teacherEmail, String teacherPhone, LocalDateTime teacherBirthday, String teacherAddress, boolean teacherState) {
+        this.teacherId = teacherId;
+        this.teacherName = teacherName;
+        this.teacherEmail = teacherEmail;
+        this.teacherPhone = teacherPhone;
+        this.teacherBirthday = teacherBirthday;
+        this.teacherAddress = teacherAddress;
+        this.teacherState = teacherState;
     }
 
-    public Long getTeacher_id() {
-        return teacher_id;
+    public Long getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacher_id(Long teacher_id) {
-        this.teacher_id = teacher_id;
+    public void setTeacherId(Long teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public String getTeacher_name() {
-        return teacher_name;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setTeacher_name(String teacher_name) {
-        this.teacher_name = teacher_name;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
-    public String getTeacher_email() {
-        return teacher_email;
+    public String getTeacherEmail() {
+        return teacherEmail;
     }
 
-    public void setTeacher_email(String teacher_email) {
-        this.teacher_email = teacher_email;
+    public void setTeacherEmail(String teacherEmail) {
+        this.teacherEmail = teacherEmail;
     }
 
-    public String getTeacher_phone() {
-        return teacher_phone;
+    public String getTeacherPhone() {
+        return teacherPhone;
     }
 
-    public void setTeacher_phone(String teacher_phone) {
-        this.teacher_phone = teacher_phone;
+    public void setTeacherPhone(String teacherPhone) {
+        this.teacherPhone = teacherPhone;
     }
 
-    public LocalDateTime getTeacher_birthday() {
-        return teacher_birthday;
+    public LocalDateTime getTeacherBirthday() {
+        return teacherBirthday;
     }
 
-    public void setTeacher_birthday(LocalDateTime teacher_birthday) {
-        this.teacher_birthday = teacher_birthday;
+    public void setTeacherBirthday(LocalDateTime teacherBirthday) {
+        this.teacherBirthday = teacherBirthday;
     }
 
-    public String getTeacher_address() {
-        return teacher_address;
+    public String getTeacherAddress() {
+        return teacherAddress;
     }
 
-    public void setTeacher_address(String teacher_address) {
-        this.teacher_address = teacher_address;
+    public void setTeacherAddress(String teacherAddress) {
+        this.teacherAddress = teacherAddress;
     }
 
-    public boolean isTeacher_state() {
-        return teacher_state;
+    public boolean isTeacherState() {
+        return teacherState;
     }
 
-    public void setTeacher_state(boolean teacher_state) {
-        this.teacher_state = teacher_state;
+    public void setTeacherState(boolean teacherState) {
+        this.teacherState = teacherState;
     }
 
 }

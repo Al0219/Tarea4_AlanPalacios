@@ -1,11 +1,13 @@
 package com.gestion_academica.service;
 
+import com.gestion_academica.dtos.TeacherDTO;
 import com.gestion_academica.entities.Teacher;
 import com.gestion_academica.repositories.TeacherRepository;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TeacherService {
@@ -37,12 +39,12 @@ public class TeacherService {
     public Teacher update(Long id, Teacher teacherDetails) {
         return teacherRepository.findById(id)
                 .map(t -> {
-                    t.setTeacher_name(teacherDetails.getTeacher_name());
-                    t.setTeacher_email(teacherDetails.getTeacher_email());
-                    t.setTeacher_phone(teacherDetails.getTeacher_phone());
-                    t.setTeacher_birthday(teacherDetails.getTeacher_birthday());
-                    t.setTeacher_address(teacherDetails.getTeacher_address());
-                    t.setTeacher_state(teacherDetails.isTeacher_state());
+                    t.setTeacherName(teacherDetails.getTeacherName());
+                    t.setTeacherEmail(teacherDetails.getTeacherEmail());
+                    t.setTeacherPhone(teacherDetails.getTeacherPhone());
+                    t.setTeacherBirthday(teacherDetails.getTeacherBirthday());
+                    t.setTeacherAddress(teacherDetails.getTeacherAddress());
+                    t.setTeacherState(teacherDetails.isTeacherState());
                     return teacherRepository.save(t);
                 })
                 .orElseThrow(() -> new RuntimeException("Teacher not found with id " + id));
@@ -54,5 +56,21 @@ public class TeacherService {
             throw new RuntimeException("Teacher not found with id " + id);
         }
         teacherRepository.deleteById(id);
+    }
+
+    public List<TeacherDTO> findAllDTO(String teacherName) {
+        List<Teacher> teachers;
+        if (teacherName != null && !teacherName.isEmpty()) {
+            teachers = teacherRepository.findByTeacherNameContainingIgnoreCase(teacherName);
+        } else {
+            teachers = teacherRepository.findAll();
+        }
+        return teachers.stream().map(TeacherDTO::new).collect(Collectors.toList());
+    }
+
+    public TeacherDTO obtenerTeacherPorId(Long teacher_id) {
+        Teacher teacher = teacherRepository.findById(teacher_id)
+            .orElseThrow(() -> new RuntimeException("Teacher not found with id " + teacher_id));
+        return new TeacherDTO(teacher);
     }
 }
